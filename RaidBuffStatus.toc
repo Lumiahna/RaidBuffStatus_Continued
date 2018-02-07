@@ -1,5 +1,5 @@
 ## Interface: 70300
-## Title: RaidBuffStatus
+## Title: RaidBuffStatus_Continued
 ## Author: Danielbarron, oscarucb
 ## Maintained and Updated by Suura/Lumiahna
 ## Version: 7.3 
