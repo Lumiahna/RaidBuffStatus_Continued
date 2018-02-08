@@ -3,11 +3,11 @@
 ## Author: Danielbarron, oscarucb
 ## Maintained and Updated by Suura/Lumiahna
 ## Version: 7.3 
-## X-Build: 800
+## X-Build: 900
 ## X-ReleaseDate: Heute
-## X-Revision: $Revision: 800 $
+## X-Revision: $Revision: 900 $
 ## Notes: Reports on a configurable dashboard or to group chat on consumables, buffs, AFK, mana and many many others but in an intelligent automagic way. RBS is the last nail in the coffin of all slacking level max-level raiders
-## URL: http://www.wowace.com/projects/raidbuffstatus/
+## URL: https://www.curseforge.com/wow/addons/raidbuffstatus-continued
 ## DefaultState: Enabled
 ## OptionalDeps: Ace3, XPerl, LibGroupInSpecT-1.0
 ## SavedVariables: RaidBuffStatusDB, RaidBuffStatusDefaultProfile
@@ -15,12 +15,12 @@
 ## X-Embeds: Ace3, LibDataBroker-1.1, LibGroupInSpecT-1.0
 ## LoadManagers: AddonLoader
 ## X-LoadOn-Group: true
-## X-LoadOn-Slash: /raidbuffstatus, /rbs
-## X-LoadOn-InterfaceOptions: RaidBuffStatus
-## X-Curse-Packaged-Version: 7.1 
-## X-Curse-Project-Name: RaidBuffStatus
-## X-Curse-Project-ID: raidbuffstatus
-## X-Curse-Repository-ID: wow/raidbuffstatus/mainline
+## X-LoadOn-Slash: /raidbuffstatus, /rbs, /rbsc, /raidbuffstatuscontinued
+## X-LoadOn-InterfaceOptions: RaidBuffStatus_Continued
+## X-Curse-Packaged-Version: 7.3.5
+## X-Curse-Project-Name: RaidBuffStatus_Continued
+## X-Curse-Project-ID: raidbuffstatus_continued
+## X-Curse-Repository-ID: wow/raidbuffstatus_continued/mainline
 
 embeds.xml
 

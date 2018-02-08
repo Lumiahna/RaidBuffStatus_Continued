@@ -3147,7 +3147,7 @@ function addon:Tooltip(self, title, list, tlist, blist, slist, messagelist, item
 	end
 	if unknownlist and #unknownlist > 0 then
 	        if GameTooltip:NumLines() > 1 then GameTooltip:AddLine(" ") end
-		GameTooltip:AddLine(L["Missing or not working oRA or RBS: "]..
+		GameTooltip:AddLine(L["Missing or not working oRA or RBS or RBS Continued: "]..
 		                    addon:FormatNameList(unknownlist),RED_FONT_COLOR.r, RED_FONT_COLOR.g, RED_FONT_COLOR.b, 1)
 	end
 	if zonelist then
@@ -4076,11 +4076,11 @@ function addon:CHAT_MSG_ADDON(event, prefix, message, distribution, sender)
 			elseif string.find(version, "beta") then
 				releasetype = L["beta"]
 			end
-			addon:Print(L["%s has a newer (%s) version of RBS (%s) than you (%s)"]:format(sender, releasetype, addon.rbsversions[sender], addon.version .. " build-" .. addon.revision))
+			addon:Print(L["%s has a newer (%s) version of RBS or RBS Continued (%s) than you (%s)"]:format(sender, releasetype, addon.rbsversions[sender], addon.version .. " build-" .. addon.revision))
 		end
 		if not toldaboutrbsuser[sender] and profile.userannounce then
 			toldaboutrbsuser[sender] = true
-			addon:Print(L["%s is running RBS %s"]:format(sender, addon.rbsversions[sender]))
+			addon:Print(L["%s is running RBS or RBS Continued %s"]:format(sender, addon.rbsversions[sender]))
 		end
 	  end
 	end
@@ -4884,7 +4884,7 @@ end
 
 function addon:PopUpWizard()
 	StaticPopupDialogs["RBS_WIZARD"] = {
-		text = L["This is the first time RaidBuffStatus has been activated since installation or settings were reset. Would you like to visit the Buff Wizard to help you get RBS buffs configured? If you are a raid leader then you can click No as the defaults are already set up for you."],
+		text = L["This is the first time RaidBuffStatus Continued has been activated since installation or settings were reset. Would you like to visit the Buff Wizard to help you get RBS Continued buffs configured? If you are a raid leader then you can click No as the defaults are already set up for you."],
 		button1 = L["Buff Wizard"],
 		button2 = L["No"],
 		button3 = L["Remind me later"],
