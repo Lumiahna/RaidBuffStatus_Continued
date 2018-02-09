@@ -1,0 +1,14 @@
+commit ded661e04aa24ed9a0ca53eba747347c78d06d8e
+Author: Suura <snipy@funky-family.eu>
+Date:   Wed Feb 7 19:22:44 2018 +0100
+
+    Updated title and stuff
+    - Rdy to deploy on Curseforge
+
+commit 91509bd6404496cffb77fe4613088d70585a9eca
+Author: Suura <snipy@funky-family.eu>
+Date:   Wed Feb 7 19:16:23 2018 +0100
+
+    Initial Commit
+    - updated for Legion and 7.3 patch
+
