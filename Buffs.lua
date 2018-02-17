@@ -1,4 +1,4 @@
-local addonName, vars = ...
+;local addonName, vars = ...
 local L = vars.L
 local addon = RaidBuffStatus
 local report = addon.report
@@ -1766,7 +1766,7 @@ local BF = {
 		selfbuff = true,
 		selfonlybuff = true,
 		timer = false,
-		class = { WARLOCK = true, HUNTER = true, DEATHKNIGHT = true, MAGE = true, },
+		class = { WARLOCK = false, HUNTER = false, DEATHKNIGHT = false, MAGE = false, }, -- Temporaly disable to avoid false alert regardless talents
 		chat = BS[883]:gsub("%s*%d+$",""), -- Call Pet
 		main = function(self, name, class, unit, raid, report)
 			local needspet = false
