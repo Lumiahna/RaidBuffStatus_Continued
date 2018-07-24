@@ -156,7 +156,7 @@ local taunts = {
 	31790, -- Righteous Defense
 	62124, -- Hand of Reckoning
 	-- Monk
-	116189, -- Provoke 
+	116189, -- Provoke
 	-- Demonhunter
 	185245, -- Folter
 }
@@ -201,15 +201,15 @@ local utilinit = {
 	[92712]  = { category="Cauldron", itemid=65460, limit=30, slow=true, duration=600 }, -- Big Cauldron of Battle
 	[188036] = { category="Cauldron", itemid=127851, limit=30, slow=true, Duration=600 }, -- Spirit Cauldron
 
-	[43987]  = { category="Table", cast=true, slow=true, duration=180 }, -- Ritual of Refreshment 
+	[43987]  = { category="Table", cast=true, slow=true, duration=180 }, -- Ritual of Refreshment
 
-	[29893]  = { category="Soulwell", itemid=5512, cast=true, slow=true, duration=120 },  -- Create Soulwell 
+	[29893]  = { category="Soulwell", itemid=5512, cast=true, slow=true, duration=120 },  -- Create Soulwell
 
 	[126459] = { category="Blingtron", itemid=87214, duration=600, ungrouped=true }, -- Blingtron 4000
 	[161414] = { category="Blingtron", itemid=111821, duration=600, ungrouped=true }, -- Blingtron 5000
 	[200061] = { category="Blingtron", itemid=101527, duration=600, ungrouped=true }, -- Blingtron 6000
-	
-	[54710]  = { category="Mailbox", item=40768, label=L["Mailbox"], duration=600, ungrouped=true }, 
+
+	[54710]  = { category="Mailbox", item=40768, label=L["Mailbox"], duration=600, ungrouped=true },
 
 	[22700]  = { category="Repair", itemid=18232, label=L["Repair Bot"], duration=600, ungrouped=true }, -- Field Repair Bot 74A
 	[44389]  = { category="Repair", itemid=34113, label=L["Repair Bot"], duration=600, ungrouped=true }, -- Field Repair Bot 110G
@@ -235,7 +235,7 @@ local utilinit = {
 	[132620] = { category="Portal", slow=true, cast=true }, -- Vale of Eternal Blossoms
 	[120146] = { category="Portal", slow=true, cast=true }, -- Ancient Dalaran
 	[176246] = { category="Portal", slow=true, cast=true }, -- Stormshield
-	-- Legion Food 
+	-- Legion Food
 	-- Experimenting issues, actually it doesn't detect when a feast is setup
 --	[201515] = { category="Feast", itemid=133578, limit=35, },   -- Hearty Feast
 --	[201542] = { category="Feast", itemid=133578, limit=35, },   -- Hearty Feast
@@ -243,7 +243,7 @@ local utilinit = {
 --	[201516] = { category="Feast", itemid=133579, limit=35, },   -- Lavish Suramar Feast
 --	[201543] = { category="Feast", itemid=133579, limit=35, },   -- Lavish Suramar Feast
 --	[201563] = { category="Feast", itemid=133579, limit=35, },   -- Lavish Suramar Feast
-	
+
 }
 local utildata = {}
 function addon:UpdateUtilData()
@@ -272,7 +272,7 @@ local function AddTTFeastBonus(self, name)
   if info and info.bonus and profile.FeastTT then
     local btext = _G["ITEM_MOD_"..info.bonus.."_SHORT"]
     if btext then
-      self:AddDoubleLine(name,L["Bonus"].." "..btext)   
+      self:AddDoubleLine(name,L["Bonus"].." "..btext)
       self:Show()
      end
   end
@@ -912,7 +912,7 @@ function addon:CopyTalentRowDataToRowFrames()
 		tfi.rowframes[i].name:SetText(name)
 		tfi.rowframes[i].name:SetTextColor(r,g,b)
 		tfi.rowframes[i].class:SetNormalTexture(classicons[class] or classicons.UNKNOWN)
-		tfi.rowframes[i].class:SetScript("OnEnter", function() 
+		tfi.rowframes[i].class:SetScript("OnEnter", function()
 			addon:Tooltip(tfi.rowframes[i].class, LOCALIZED_CLASS_NAMES_MALE[class], nil)
 		end )
 		tfi.rowframes[i].class:SetScript("OnLeave", GameTooltip_Hide)
@@ -1226,7 +1226,7 @@ function addon:CalculateReport()
 		report.DeadCount = alivecount - alive
 		report.Dead = math.floor(report.DeadCount / alivecount * 100)
 	end
-	
+
 	if tanksalivecount < 1 then
 		report.TanksAlive = L["n/a"]
 		report.TanksAliveCount = ""
@@ -1419,7 +1419,7 @@ function addon:ReadRaid()
 	end
 --	addon:Debug("tankList:" .. tankList)
 	local it = select(2, IsInInstance())
-	raid.isbattle = (it == "pvp") or (it == "arena") or 
+	raid.isbattle = (it == "pvp") or (it == "arena") or
 	                (GetRealZoneText() == L["Wintergrasp"]) or
 	                (GetRealZoneText() == L["Tol Barad"])
 	local groupnum = GetNumGroupMembers()
@@ -1495,8 +1495,8 @@ local spec_role = {
   DEMONHUNTER   = { [1] = "MDPS", [2] = "TANK" },
 }
 
--- raid = { classes = { CLASS = { NAME = { readid, unitid, guid, group, zone, online, isdead, istank, hasmana, isdps, ishealer, class, 
---                                         hasbuff = {}, talents (boolean), spec (index), specname (localized name), specicon, tinfo = (library info) 
+-- raid = { classes = { CLASS = { NAME = { readid, unitid, guid, group, zone, online, isdead, istank, hasmana, isdps, ishealer, class,
+--                                         hasbuff = {}, talents (boolean), spec (index), specname (localized name), specicon, tinfo = (library info)
 function addon:ReadUnit(unitid, unitindex)
 	if not UnitExists(unitid) then
 		return
@@ -1536,10 +1536,10 @@ function addon:ReadUnit(unitid, unitindex)
 		if GetNumGroupMembers() > 0 then
 		        local _,rrole
 			_, rank, subgroup, _, _, _, zone, _, _, rrole, isML = GetRaidRosterInfo(unitindex)
-			if zone then 
+			if zone then
 			  zone = zone:gsub("$[^%s]+%s* ","") -- clean up garrison tag: "$n's Garrison"
 			end
-			if (not role or role == "NONE") and 
+			if (not role or role == "NONE") and
 			   (rrole == "MAINTANK" or string.find(tankList, '|' .. name .. '|')) then
 			  role = "TANK"
 			end
@@ -1573,8 +1573,8 @@ function addon:ReadUnit(unitid, unitindex)
 		spec = raid.classes[class][name] and raid.classes[class][name].spec
 		local mintimeleft = profile.abouttorunout * 60
 		local thetime = GetTime()
-		for b = 1, 32 do
-			local buffName, _, _, _, _, duration, expirationTime, unitCaster, _, _, spellId = UnitBuff(unitid, b)
+		for b = 1, 40 do
+			local buffName, _, _, _, duration, expirationTime, unitCaster, _, _, spellId = UnitBuff(unitid, b)
 --			if duration and expirationTime then
 --				addon:Debug(buffName .. ":" .. duration .. ":" .. expirationTime .. ":")
 --			end
@@ -1669,7 +1669,7 @@ function addon:ReadUnit(unitid, unitindex)
 		if ishealer then
 			table.insert(raid.HealerList, name)
 		end
-		
+
 		rcn.readid = raid.readid
 		rcn.zone = zone
 		--rcn.distance = addon:DistanceQuery(unitid)
@@ -1703,14 +1703,14 @@ addon.cons_cache_str = {}
 function addon:StatLevel(isfood, spellId, unitid, b)
 	local key = spellId
 	if isfood then -- 125 wod food uses same spellids as older 100 food
-		key = key.."_"..strjoin("_",tostringall(select(14,UnitBuff(unitid,b))))
+		key = key.."_"..strjoin("_",tostringall(select(13,UnitBuff(unitid,b))))
 	end
 	local statval, statstr = addon.cons_cache_val[key], addon.cons_cache_str[key]
 	if statval and statstr then return statval, statstr, true end
 
 	local valid
 	statval, statstr, valid = addon:StatLevelCalc(isfood, spellId, unitid, b)
-	if valid then 
+	if valid then
 		addon.cons_cache_val[key], addon.cons_cache_str[key] = statval, statstr
 	end
 
@@ -1784,9 +1784,9 @@ function addon:StatLevelCalc(isfood, spellId, unitid, b)
 	-- normalize stats
    	if isfood then -- normalize for Epicurean racial
 		local race = select(2,UnitRace(unitid))
-		if not race then 
-			return statval, "???" 
-		elseif race == "Pandaren" then 
+		if not race then
+			return statval, "???"
+		elseif race == "Pandaren" then
       			statval = statval / 2
 		end
    	end
@@ -1801,7 +1801,7 @@ function addon:StatLevelCalc(isfood, spellId, unitid, b)
 	( (isfood and statval >= 40) or (not isfood and statval >= 150) )
 	then -- normalize for MoP/WoD stam bonus
       		statval = math.ceil(statval / 1.5)
-	elseif mainstat == ARMOR then 
+	elseif mainstat == ARMOR then
 		-- might need to normalize this, although MoP armor elixirs just seem OP atm
 		-- statval = statval / 2
    	end
@@ -1816,7 +1816,7 @@ function addon:DistanceBegin()
   local d = addon.dist_info
   local lvl = GetCurrentMapDungeonLevel()
   if lvl and lvl > 0 then
-    d.disabled = true -- SetDungeonMapLevel doesn't correctly reset the map in many cases, 
+    d.disabled = true -- SetDungeonMapLevel doesn't correctly reset the map in many cases,
                       -- and we don't really need distance info anyway while inside a dungeon
     return
   else
@@ -1836,7 +1836,7 @@ function addon:DistanceBegin()
   end
 end
 
-function addon:DistanceQuery(unitid) -- return approximate distance in yards between player and unit. 
+function addon:DistanceQuery(unitid) -- return approximate distance in yards between player and unit.
                                      -- Results are only meaningful when both units are in the outside world on the same continent
   local d = addon.dist_info
   if incombat or not profile.checkzone or d.disabled then return nil end
@@ -1862,7 +1862,7 @@ end
 
 addon.rbswspfilt = {}
 local function WhisperFilter(self, event, message, sender, ...)
-  if event == "CHAT_MSG_WHISPER_INFORM" 
+  if event == "CHAT_MSG_WHISPER_INFORM"
      and profile.hidewhispers
      and GetTime() < (addon.rbswspfilt[message] or 0)+15 -- addon whispered this message in the last 15 sec
   then
@@ -1932,7 +1932,7 @@ function addon:Say(msg, player, prepend, channel)
 	        if profile.ReportChat and not raid.isbattle then
 		    if raid.islfg then SendChatMessage(str, "INSTANCE_CHAT")
 		    elseif raid.isparty then SendChatMessage(str, "PARTY")
-		    elseif raid.israid and canspeak then SendChatMessage(str, "RAID") 
+		    elseif raid.israid and canspeak then SendChatMessage(str, "RAID")
 		    end
 	        end
 		if profile.ReportSelf then addon:Print(str) end
@@ -1993,9 +1993,9 @@ function addon:SetupFrames()
 	fs:SetPoint("TOP",0,-5)
 	fs:SetTextColor(.9,0,0)
 	fs:Show()
-	frame:SetBackdrop( { 
+	frame:SetBackdrop( {
 		bgFile = "Interface\\Buttons\\WHITE8X8",
-		edgeFile = "Interface\\Tooltips\\UI-Tooltip-Border", tile = true, tileSize = 16, edgeSize = 16, 
+		edgeFile = "Interface\\Tooltips\\UI-Tooltip-Border", tile = true, tileSize = 16, edgeSize = 16,
 		insets = { left = 5, right = 5, top = 5, bottom = 5 }
 	})
 	frame:ClearAllPoints()
@@ -2019,7 +2019,7 @@ function addon:SetupFrames()
 	frame:SetClampedToScreen(true)
 	addon:LoadFramePosition()
 
-        
+
 	button = CreateFrame("Button", "$parentBossButton", addon.frame, "OptionsButtonTemplate")
 	addon.bossbutton = button
 	button:SetText(L["Boss"])
@@ -2076,10 +2076,10 @@ function addon:SetupFrames()
 			addon:OfficerWarning()
 		end
 	end)
-	button:SetScript("OnEnter", function(owner)  
+	button:SetScript("OnEnter", function(owner)
 			GameTooltip:SetOwner(owner, "ANCHOR_RIGHT")
-			GameTooltip:SetText(L["Ready Check"]) 
-			GameTooltip:Show() 
+			GameTooltip:SetText(L["Ready Check"])
+			GameTooltip:Show()
 		end)
 	button:SetScript("OnLeave", GameTooltip_Hide)
 	button:Show()
@@ -2105,10 +2105,10 @@ function addon:SetupFrames()
 			addon:OfficerWarning()
 		end
 	end)
-	button:SetScript("OnEnter", function(owner)  
+	button:SetScript("OnEnter", function(owner)
 			GameTooltip:SetOwner(owner, "ANCHOR_RIGHT")
-			GameTooltip:SetText(L["Pull Timer"]) 
-			GameTooltip:Show() 
+			GameTooltip:SetText(L["Pull Timer"])
+			GameTooltip:Show()
 		end)
 	button:SetScript("OnLeave", GameTooltip_Hide)
 	button:Show()
@@ -2118,7 +2118,7 @@ function addon:SetupFrames()
 	button:SetWidth(20)
 	button:SetHeight(20)
 	button:SetNormalTexture("Interface\\ChatFrame\\UI-ChatIcon-ScrollDown-Up")
-	button:SetPushedTexture("Interface\\ChatFrame\\UI-ChatIcon-ScrollDown-Down") 
+	button:SetPushedTexture("Interface\\ChatFrame\\UI-ChatIcon-ScrollDown-Down")
 	button:SetHighlightTexture("Interface\\Buttons\\UI-Common-MouseHilight")
 	button:ClearAllPoints()
 	button:SetPoint("TOPLEFT", addon.frame, "TOPLEFT", 5, -5)
@@ -2133,7 +2133,7 @@ function addon:SetupFrames()
 	button:SetWidth(20)
 	button:SetHeight(20)
 	button:SetNormalTexture("Interface\\ChatFrame\\UI-ChatIcon-ScrollDown-Up")
-	button:SetPushedTexture("Interface\\ChatFrame\\UI-ChatIcon-ScrollDown-Down") 
+	button:SetPushedTexture("Interface\\ChatFrame\\UI-ChatIcon-ScrollDown-Down")
 	button:SetHighlightTexture("Interface\\Buttons\\UI-Common-MouseHilight")
 	button:ClearAllPoints()
 	button:SetPoint("TOPRIGHT", addon.frame, "TOPRIGHT", -5, -5)
@@ -2171,9 +2171,9 @@ function addon:SetupFrames()
 	fs:SetPoint("TOP",0,-5)
 	fs:SetTextColor(1,1,1)
 	fs:Show()
-	talentframe:SetBackdrop( { 
-		bgFile = "Interface\\Buttons\\WHITE8X8", 
-		edgeFile = "Interface\\Tooltips\\UI-Tooltip-Border", tile = true, tileSize = 16, edgeSize = 16, 
+	talentframe:SetBackdrop( {
+		bgFile = "Interface\\Buttons\\WHITE8X8",
+		edgeFile = "Interface\\Tooltips\\UI-Tooltip-Border", tile = true, tileSize = 16, edgeSize = 16,
 		insets = { left = 5, right = 5, top = 5, bottom = 5 }
 	})
 	talentframe:ClearAllPoints()
@@ -2333,9 +2333,9 @@ function addon:SetupFrames()
 	fs:SetPoint("TOP",0,-5)
 	fs:SetTextColor(1,1,1)
 	fs:Show()
-	optionsframe:SetBackdrop( { 
-		bgFile = "Interface\\Buttons\\WHITE8X8", 
-		edgeFile = "Interface\\Tooltips\\UI-Tooltip-Border", tile = true, tileSize = 16, edgeSize = 16, 
+	optionsframe:SetBackdrop( {
+		bgFile = "Interface\\Buttons\\WHITE8X8",
+		edgeFile = "Interface\\Tooltips\\UI-Tooltip-Border", tile = true, tileSize = 16, edgeSize = 16,
 		insets = { left = 5, right = 5, top = 5, bottom = 5 }
 	})
 	optionsframe:ClearAllPoints()
@@ -2487,7 +2487,7 @@ function addon:AddBuffButtons()
 	end
 	local BF = addon.BF
 	for buffcheck, _ in pairs(BF) do
-		
+
 		if not profile[buffcheck .. "dash"] and not profile[buffcheck .. "dashcombat"] and not profile[buffcheck .. "boss"] and not profile[buffcheck .. "trash"] then
 			 profile[BF[buffcheck].check] = false -- if nothing using it then switch off
 		end
@@ -2513,7 +2513,7 @@ function addon:AddBuffButtons()
 				end
 			end
 		end
-		
+
 	end
 	addon:SortButtons(bosses)
 	addon:SortButtons(buffs)
@@ -2899,7 +2899,7 @@ function addon:OnEnable()
 	if string.find(addon.version, "@") then -- dev copy uses "@.project-version.@"
            addon.version = "r"..svnrev
 	end
-	
+
 	addon:SendVersion()
 	addon.versiontimer = addon:ScheduleRepeatingTimer(addon.SendVersion, 5 * 60)
 	addon:RegisterEvent("PLAYER_REGEN_ENABLED", "LeftCombat")
@@ -2955,16 +2955,16 @@ function addon:DelayedEnable()
 	end
 	addon.Prefixes = {["RBS"]=1, ["oRA3"]=1, ["CTRA"]=1}
 	for prefix,_ in pairs(addon.Prefixes) do
-	  RegisterAddonMessagePrefix(prefix)
+	  C_ChatInfo.RegisterAddonMessagePrefix(prefix)
 	end
 	hooksecurefunc(StaticPopupDialogs["RESURRECT"], "OnShow", function()
 		addon:SendRezMessage("RESSED")
 	end)
 	WorldMapFrame:Show()
-	WorldMapFrame:Hide() 
+	WorldMapFrame:Hide()
         GameTooltip:HookScript   ("OnTooltipSetItem", function(self) AddTTFeastBonus(self, self:GetItem()) end)
         ItemRefTooltip:HookScript("OnTooltipSetItem", function(self) AddTTFeastBonus(self, self:GetItem()) end)
-        GameTooltip:HookScript   ("OnShow", function(self) 
+        GameTooltip:HookScript   ("OnShow", function(self)
 	  if self:NumLines() == 1 and GameTooltipTextLeft1 then AddTTFeastBonus(self, GameTooltipTextLeft1:GetText()) end end)
 end
 
@@ -3001,7 +3001,7 @@ function addon:LeftCombat(force)
 	addon:AddBuffButtons()
 	addon:UpdateButtons()
 	if (force == true or profile.HideInCombat) and dashwasdisplayed then
-		addon:ShowReportFrame()	
+		addon:ShowReportFrame()
 	end
 end
 
@@ -3020,7 +3020,7 @@ function addon:ClassColor(name)
         cstr = "ff808080" -- grey
       elseif unit.isdead then
         cstr = "ffff1919" -- red
-      end 
+      end
       if cstr then
         name = "\124c"..cstr..name.."\124r"
       end
@@ -3058,7 +3058,7 @@ function addon:NoteParse(namewithnote)
   local note = name:match("%((.+)%)$")
   if note and note:match("^[A-Z][A-Z]$") then
     note = nil -- ignore PTR realm suffixes
-  elseif note then 
+  elseif note then
     name = name:gsub("%s*%(.+%)$","")  -- remove note suffix
   end
   return name, note
@@ -3091,7 +3091,7 @@ function addon:Tooltip(self, title, list, tlist, blist, slist, messagelist, item
 	  end
 	end
 	GameTooltip:SetText(title,1,1,1,1,1)
-	if self.optionsbuff then 
+	if self.optionsbuff then
 	  GameTooltip:Show()
 	  return
 	end
@@ -3121,13 +3121,13 @@ function addon:Tooltip(self, title, list, tlist, blist, slist, messagelist, item
 					caster = tmp
 				end
 				-- beacon support
-				if caster and caster:match("^\?") then 
+				if caster and caster:match("^\?") then
 					caster = "???"
 				else
 					caster = caster:gsub(" +$","")
 				end
 				if caster ~= "invert_table" then
-					GameTooltip:AddDoubleLine(addon:ClassColor(name), addon:ClassColor(caster), 
+					GameTooltip:AddDoubleLine(addon:ClassColor(name), addon:ClassColor(caster),
 					                          nil, nil, nil, GREEN_FONT_COLOR.r, GREEN_FONT_COLOR.g, GREEN_FONT_COLOR.b)
 				end
 			end
@@ -3296,7 +3296,7 @@ function addon:ButtonClick(self, button, down, buffcheck, cheapspell, nonselfbuf
 						self:SetAttribute("target-slot", nil)
 					        self:SetAttribute("unit", nil)
 						self:SetScript("PostClick", nil)
-					end)					
+					end)
 				end
 			end
 		elseif bagitem and action == "buff" then
@@ -3424,7 +3424,7 @@ function addon:ButtonClick(self, button, down, buffcheck, cheapspell, nonselfbuf
 			addon:BeginWhispers()
 			addon:WhisperBuff(BF[buffcheck], report, raid, prefix)
 			addon:EndWhispers()
-			
+
 		elseif action == "enabledisable" then
 			addon:ToggleCheck(check)
 		end
@@ -3626,9 +3626,9 @@ function addon:GotReagent(reagent)
 	return false
 end
 
-function addon:COMBAT_LOG_EVENT_UNFILTERED(event, timestamp, subevent, hideCaster, 
-	srcGUID, srcname, srcflags, srcRaidFlags, 
-	dstGUID, dstname, dstflags, dstRaidFlags, 
+function addon:COMBAT_LOG_EVENT_UNFILTERED(event, timestamp, subevent, hideCaster,
+	srcGUID, srcname, srcflags, srcRaidFlags,
+	dstGUID, dstname, dstflags, dstRaidFlags,
 	spellID, spellname, spellschool, extraspellID, extraspellname, extraspellschool, auratype)
 	if not raid.israid and not raid.isparty then
 		return
@@ -3636,7 +3636,7 @@ function addon:COMBAT_LOG_EVENT_UNFILTERED(event, timestamp, subevent, hideCaste
 	if not subevent then
 		return
 	end
-	if (subevent == "UNIT_DIED" and band(dstflags,COMBATLOG_OBJECT_TYPE_PLAYER) > 0) or 
+	if (subevent == "UNIT_DIED" and band(dstflags,COMBATLOG_OBJECT_TYPE_PLAYER) > 0) or
 	   (spellID == 27827 and subevent == "SPELL_AURA_APPLIED") then -- Spirit of Redemption
 		--addon:Debug(subevent .. " someone died:" .. dstname)
 		local unit = addon:GetUnitFromName(dstname)
@@ -3653,14 +3653,14 @@ function addon:COMBAT_LOG_EVENT_UNFILTERED(event, timestamp, subevent, hideCaste
 	if not spellID or not spellname then -- must come after UNIT_DIED, which has no spell
 		return
 	end
-	if (spellID == 20707 or spellID == 6203) and 
-	   (subevent == "SPELL_CAST_SUCCESS" or subevent == "SPELL_AURA_APPLIED" or subevent == "SPELL_AURA_REFRESH") then 
+	if (spellID == 20707 or spellID == 6203) and
+	   (subevent == "SPELL_CAST_SUCCESS" or subevent == "SPELL_AURA_APPLIED" or subevent == "SPELL_AURA_REFRESH") then
 		addon:LockSoulStone(srcname)
 		addon:Debug("Lock cast soulstone:" .. srcname .. " " .. subevent)
 		return
 	end
 	if (spellID == 34477 or spellID == 57934) and
-	   subevent == "SPELL_CAST_SUCCESS" and 
+	   subevent == "SPELL_CAST_SUCCESS" and
 	   profile.misdirectionwarn and
 	   addon:IsInRaid(srcname) then
 		addon:MisdirectionEventLog(srcname, spellname, dstname)
@@ -3692,13 +3692,13 @@ function addon:COMBAT_LOG_EVENT_UNFILTERED(event, timestamp, subevent, hideCaste
 			else
 				addon.rezerrezee[srcname] = nil
 			end
-			if subevent == "SPELL_CAST_START" or 
+			if subevent == "SPELL_CAST_START" or
 			   subevent == "SPELL_CAST_SUCCESS" then
 			   local info = utildata[spellID]
 			   if info then
 			   	if info.slow and subevent == "SPELL_CAST_START" then return end -- wait for completion of long casts
 
-			   	if addon:IsInRaid(srcname) or 
+			   	if addon:IsInRaid(srcname) or
 				   (info.ungrouped and UnitFactionGroup(srcname)==UnitFactionGroup("player")) then
 					addon:Announces(info.category, srcname, nil, spellID)
 				end
@@ -3709,13 +3709,13 @@ function addon:COMBAT_LOG_EVENT_UNFILTERED(event, timestamp, subevent, hideCaste
 		return  -- the destination is a player and we only care about stuff to mobs
 	end
 	-- else do workaround for broken polymorph combat log
-	if (subevent == "SPELL_AURA_APPLIED" or subevent == "SPELL_AURA_REMOVED") and 
+	if (subevent == "SPELL_AURA_APPLIED" or subevent == "SPELL_AURA_REMOVED") and
 	   workaroundbugccspellshash[spellname] and profile.ccwarn then
 		if not srcname or not addon:IsInRaid(srcname) then
 			return
 		end
-		addon:WorkAroundBugCCEvent(event, timestamp, subevent, 
-			srcGUID, srcname, srcflags, srcRaidFlags, 
+		addon:WorkAroundBugCCEvent(event, timestamp, subevent,
+			srcGUID, srcname, srcflags, srcRaidFlags,
 			dstGUID, dstname, dstflags, dstRaidFlags,
 			spellID, spellname, spellschool, extraspellID, extraspellname)
 	elseif dstGUID and currentsheep[dstGUID] and profile.ccwarn then
@@ -3743,36 +3743,36 @@ function addon:COMBAT_LOG_EVENT_UNFILTERED(event, timestamp, subevent, hideCaste
 		if subevent == "SWING_DAMAGE" then
 			spellname = L["Melee Swing"]
 		end
-		addon:CCEventLog(event, timestamp, "SPELL_AURA_BROKEN_SPELL", 
-			srcGUID, srcname, srcflags, srcRaidFlags, 
+		addon:CCEventLog(event, timestamp, "SPELL_AURA_BROKEN_SPELL",
+			srcGUID, srcname, srcflags, srcRaidFlags,
 			dstGUID, dstname, dstflags, dstRaidFlags,
 			currentsheepspell[dstGUID], BS[currentsheepspell[dstGUID]], spellschool, spellID, spellname)
 		currentsheep[dstGUID] = nil
 		currentsheepspell[dstGUID] = nil
-	elseif taunthash[spellID] and (subevent == "SPELL_MISSED" or subevent == "SPELL_AURA_APPLIED") and 
+	elseif taunthash[spellID] and (subevent == "SPELL_MISSED" or subevent == "SPELL_AURA_APPLIED") and
 	       profile.tankwarn then
 		if not srcname or not addon:IsInRaid(srcname) then
 			return
 		end
-		addon:TauntEventLog(event, timestamp, subevent, 
-			srcGUID, srcname, srcflags, srcRaidFlags, 
+		addon:TauntEventLog(event, timestamp, subevent,
+			srcGUID, srcname, srcflags, srcRaidFlags,
 			dstGUID, dstname, dstflags, dstRaidFlags,
 			spellID, spellname, spellschool, extraspellID, extraspellname)
-	elseif (subevent == "SPELL_AURA_BROKEN" or subevent == "SPELL_AURA_BROKEN_SPELL" ) and 
+	elseif (subevent == "SPELL_AURA_BROKEN" or subevent == "SPELL_AURA_BROKEN_SPELL" ) and
 	       ccspellshash[spellname] and profile.ccwarn then
 		if not srcname or not addon:IsInRaid(srcname) then
 			return
 		end
-		addon:CCEventLog(event, timestamp, subevent, 
-			srcGUID, srcname, srcflags, srcRaidFlags, 
+		addon:CCEventLog(event, timestamp, subevent,
+			srcGUID, srcname, srcflags, srcRaidFlags,
 			dstGUID, dstname, dstflags, dstRaidFlags,
 			spellID, spellname, spellschool, extraspellID, extraspellname)
 	end
 end
 
-function addon:WorkAroundBugCCEvent(event, timestamp, subevent, 
-	srcGUID, srcname, srcflags, srcRaidFlags, 
-	dstGUID, dstname, dstflags, dstRaidFlags, 
+function addon:WorkAroundBugCCEvent(event, timestamp, subevent,
+	srcGUID, srcname, srcflags, srcRaidFlags,
+	dstGUID, dstname, dstflags, dstRaidFlags,
 	spellID, spellname, spellschool, extraspellID, extraspellname)
 	if subevent == "SPELL_AURA_APPLIED" then
 		currentsheep[dstGUID] = GetTime()
@@ -3796,9 +3796,9 @@ function addon:MisdirectionEventLog(srcname, spellname, dstname)
 end
 
 
-function addon:CCEventLog(event, timestamp, subevent, 
-	srcGUID, srcname, srcflags, srcRaidFlags, 
-	dstGUID, dstname, dstflags, dstRaidFlags, 
+function addon:CCEventLog(event, timestamp, subevent,
+	srcGUID, srcname, srcflags, srcRaidFlags,
+	dstGUID, dstname, dstflags, dstRaidFlags,
 	spellID, spellname, spellschool, extraspellID, extraspellname)
 	if not spellID or not dstGUID or not srcname then
 		return
@@ -3829,7 +3829,7 @@ function addon:CCEventLog(event, timestamp, subevent,
 		else
 			addon:CCBreakSay((L["%s broke %s on %s%s%s"]):format(srcname, spellname, dsticon, dstname, dsticon), cctype)
 		end
-		
+
 	elseif subevent == "SPELL_AURA_BROKEN_SPELL" then
 		if prepend then
 			addon:CCBreakSay((L["Non-tank %s broke %s on %s%s%s with %s"]):format(srcname, spellname, dsticon, dstname, dsticon, extraspellname), cctype)
@@ -3840,9 +3840,9 @@ function addon:CCEventLog(event, timestamp, subevent,
 end
 
 
-function addon:TauntEventLog(event, timestamp, subevent, 
-	srcGUID, srcname, srcflags, srcRaidFlags, 
-	dstGUID, dstname, dstflags, dstRaidFlags, 
+function addon:TauntEventLog(event, timestamp, subevent,
+	srcGUID, srcname, srcflags, srcRaidFlags,
+	dstGUID, dstname, dstflags, dstRaidFlags,
 	spellID, spellname, spellschool, misstype)
 	if not taunthash[spellID] then
 		return
@@ -3970,7 +3970,7 @@ local function EventReport(msg, dorw, doraid, doparty, doself)
     else
        SendChatMessage(msg, "RAID_WARNING")
     end
-  end 
+  end
   if raid.islfg and (doraid or doparty) then
     SendChatMessage(msg, "INSTANCE_CHAT")
   elseif raid.israid and doraid then
@@ -4084,7 +4084,7 @@ function addon:CHAT_MSG_ADDON(event, prefix, message, distribution, sender)
 		end
 	  end
 	end
-	if not listenchannels[distribution] then 
+	if not listenchannels[distribution] then
 	  return
 	end
 	if prefix == "oRA3" and message:find("SDurability") then
@@ -4178,13 +4178,13 @@ end
 
 function addon:SendAddonMessage(prefix, msg, allowguild)
 	if raid.islfg then
-		SendAddonMessage(prefix, msg, "INSTANCE_CHAT")
+		C_ChatInfo.SendAddonMessage(prefix, msg, "INSTANCE_CHAT")
 	elseif raid.israid then
-		SendAddonMessage(prefix, msg, "RAID")
+		C_ChatInfo.SendAddonMessage(prefix, msg, "RAID")
 	elseif raid.isparty then
-		SendAddonMessage(prefix, msg, "PARTY")
+		C_ChatInfo.SendAddonMessage(prefix, msg, "PARTY")
 	elseif allowguild and IsInGuild() then
-		SendAddonMessage(prefix, msg, "GUILD")
+		C_ChatInfo.SendAddonMessage(prefix, msg, "GUILD")
 	end
 end
 
@@ -4349,7 +4349,7 @@ function addon:TimeToAnnounce(category, spellid) -- ask if it's time to announce
 	local now = GetTime()
 	-- use a 30 sec delay to prevent duplicate announces even under a max calcdelay()
 	if now > (addon.lastannounce[key] or 0) + 30 then
-		addon.lastannounce[key] = now	
+		addon.lastannounce[key] = now
 		return true
 	else
 		return false
@@ -4406,7 +4406,7 @@ function addon:Announces(message, who, callback, spellID)
 				if info.bonus then
 				  local btext = _G["ITEM_MOD_"..info.bonus.."_SHORT"]
 				  if btext then
-				    msg = msg .. " ("..L["Bonus"].." "..btext..")" 
+				    msg = msg .. " ("..L["Bonus"].." "..btext..")"
 				  end
 				end
 				addon:ScheduleTimer(function()
@@ -4418,7 +4418,7 @@ function addon:Announces(message, who, callback, spellID)
 				end, 180-20)
 			end
 			addon:PingMinimap(who)
-			
+
 	elseif message == "FeastExpiring" then
 	        	local players = tonumber(addon.report.AliveCount) or raid.size
 			local feeds = info.limit or 40
@@ -4429,7 +4429,7 @@ function addon:Announces(message, who, callback, spellID)
 			if report.foodlist then
 				if #report.foodlist == 0 then
 				  	msg = nil -- all buffed
-				elseif canspeak and profile.feastautowhisper and 
+				elseif canspeak and profile.feastautowhisper and
 				       addon:TimeToAnnounce("FeastWhisper", 0) then -- dont wsp about mult different feasts
 					addon:DoReport()
 					if report.foodlist and #report.foodlist > 0 then
@@ -4500,7 +4500,7 @@ function addon:Announces(message, who, callback, spellID)
 	UIErrorsFrame:AddMessage(msg, 0, 1.0, 1.0, 1.0, 1)
 	--addon:Print(msg)
 	if not canspeak and not profile.nonleadspeak then
-	   return 
+	   return
 	end
 
 	msg = "RBS:: "..msg
@@ -4559,12 +4559,12 @@ function addon:CHAT_MSG_RAID_WARNING(event, message, who)
 
 	-- heuristic magic to try and notice other addons
 	-- TODO: ignore expiration messages
-	if message:match("^RSC") 
+	if message:match("^RSC")
 	  then
 	    local m = message:lower() -- normalize case
 	    -- XXX: both RBS and RSC currently misspell 'Soulwell' as 'Soul Well'
 	    --      this will eventually be fixed in RBS and this normalization will need to be reversed
-	    m = m:gsub("soulwell", "soul well") 
+	    m = m:gsub("soulwell", "soul well")
 	    -- RSC uses locale-specific announces, eg english: (currently just these four)
 	    -- rsctableused1 = "has set up a Food Feast!"
 	    -- rsctableused2 = "has set up a Cauldron with Flasks!"
@@ -4628,7 +4628,7 @@ function addon:PingMinimap(whom)
 	if (myx == 0 and myy == 0) or (hisx == 0 and hisy == 0) then
 		return -- can't get coords
 	end
-	
+
 	if true then
 		return -- does not work yet..... so return
 	end
@@ -4916,7 +4916,7 @@ function addon:GetMyZone()
   -- it will return different values that GetRaidRosterInfo which we use for raid members
   local myunit = addon:GetUnitFromName(playername)
   local zone = (myunit and myunit.zone) or GetRealZoneText()
-  return zone 
+  return zone
 end
 
 function addon:InMyZone(whom)
@@ -4976,15 +4976,15 @@ function addon:SendRezMessage(message)
 end
 
 function addon:UnitIsMounted(unitid)
-  if not unitid then 
+  if not unitid then
     return false
   elseif UnitInVehicle(unitid) then
     return true
-  elseif UnitIsUnit(unitid, "player") then 
+  elseif UnitIsUnit(unitid, "player") then
 		return IsMounted()
   else -- hard case, WTB IsMounted for non-player
   	for b = 1, 32 do
-      local buffName, buffRank, buffIcon, _, _, 
+      local buffName, buffRank, buffIcon, _, _,
             duration, expirationTime, unitCaster,
             _, _, buffSpellId = UnitAura(unitid, b, "HELPFUL|CANCELABLE")
       if buffIcon then
@@ -4994,7 +4994,7 @@ function addon:UnitIsMounted(unitid)
         return false
       elseif buffSpellId == 13159 or buffSpellId == 5118 then -- aspect of the pack/cheetah
         -- skip
-      elseif (expirationTime == 0 and duration == 0 and 
+      elseif (expirationTime == 0 and duration == 0 and
           (not unitCaster or (unitCaster and UnitIsUnit(unitid, unitCaster))) and
          ((buffIcon and string.find(buffIcon, "ability_mount_")) or -- most mounts
           (buffIcon and string.find(buffIcon, "misc_foot_centaur")) or -- talbuks
@@ -5013,7 +5013,7 @@ function addon:UnitIsMounted(unitid)
           buffSpellId == 30174 or -- riding turtle
           buffSpellId == 41252 or -- raven lord
           buffSpellId == 47977    -- magic broom
-         )) then -- looks mounted   
+         )) then -- looks mounted
         -- SendChatMessage(UnitName(unitid).." is mounted on "..buffName.."   "..buffIcon,"PARTY")
   	    return true
       end
@@ -5024,7 +5024,7 @@ end
 function addon:CHAT_MSG_BN_WHISPER(event, msg, sender,...)
   local pid = select(11,...)
   addon:CHAT_MSG_WHISPER(event, msg, pid)
-end  
+end
 function addon:CanAutoInvite(whom)
 	if addon:IsInBGQueue() then
 		addon:Say(L["Sorry, I am queued for a battlefield."], whom, true)
@@ -5049,7 +5049,7 @@ function addon:FQname(name) -- make sure a toon name is fully qualified
 		nn = name
 		rn = GetRealmName()
 	end
-	rn = rn:gsub("%s","") 
+	rn = rn:gsub("%s","")
 	return nn.."-"..rn
 end
 

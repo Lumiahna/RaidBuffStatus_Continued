@@ -89,7 +89,7 @@ local MAX_ATTEMPTS = 2
 lib.debug = true
 local function debug (...)
   if lib.debug then  -- allow programmatic override of debug output by client addons
-    print (...) 
+    print (...)
   end
 end
 --@end-debug@]===]
@@ -253,7 +253,7 @@ function lib:PLAYER_LOGIN ()
   frame:RegisterEvent ("UNIT_NAME_UPDATE")
   frame:RegisterEvent ("UNIT_AURA")
   frame:RegisterEvent ("CHAT_MSG_ADDON")
-  RegisterAddonMessagePrefix (COMMS_PREFIX)
+  C_ChatInfo.RegisterAddonMessagePrefix (COMMS_PREFIX)
 
   local guid = UnitGUID ("player")
   local info = self:BuildInfo ("player")
@@ -638,7 +638,7 @@ function lib:SendLatestSpecData ()
 
   --[===[@debug@
   debug ("Sending LGIST update to "..scope) --@end-debug@]===]
-  SendAddonMessage(COMMS_PREFIX, datastr, scope)
+  C_ChatInfo.SendAddonMessage(COMMS_PREFIX, datastr, scope)
 end
 
 
