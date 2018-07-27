@@ -559,7 +559,7 @@ function addon:OnInitialize()
 		bba = 1,
 		x = 0,
 		y = 0,
-		MiniMap = true,
+		MiniMap = false,
 		AutoShowDashParty = true,
 		AutoShowDashRaid = true,
 		AutoShowDashBattle = false,
@@ -1111,7 +1111,7 @@ function addon:CalculateReport()
 					else
 						alive = alive + 1
 						local h = math.floor(UnitHealth(unit.unitid)/UnitHealthMax(unit.unitid)*100)
-						local m = math.floor(UnitMana(unit.unitid)/UnitManaMax(unit.unitid)*100)
+						local m = math.floor(UnitPower(unit.unitid,0)/UnitPowerMax(unit.unitid,0)*100)
 						health = health + h
 						healthcount = healthcount + 1
 						if h < 100 then
@@ -3626,13 +3626,17 @@ function addon:GotReagent(reagent)
 	return false
 end
 
-function addon:COMBAT_LOG_EVENT_UNFILTERED(event, timestamp, subevent, hideCaster,
+function addon:COMBAT_LOG_EVENT_UNFILTERED()
+	local timestamp, subevent, hideCaster,
 	srcGUID, srcname, srcflags, srcRaidFlags,
 	dstGUID, dstname, dstflags, dstRaidFlags,
-	spellID, spellname, spellschool, extraspellID, extraspellname, extraspellschool, auratype)
+	spellID, spellname, spellschool, extraspellID, extraspellname, extraspellschool, auratype=
+	   CombatLogGetCurrentEventInfo()
+
 	if not raid.israid and not raid.isparty then
 		return
 	end
+
 	if not subevent then
 		return
 	end
@@ -3754,6 +3758,7 @@ function addon:COMBAT_LOG_EVENT_UNFILTERED(event, timestamp, subevent, hideCaste
 		if not srcname or not addon:IsInRaid(srcname) then
 			return
 		end
+		addon:Debug("Found a taunt")
 		addon:TauntEventLog(event, timestamp, subevent,
 			srcGUID, srcname, srcflags, srcRaidFlags,
 			dstGUID, dstname, dstflags, dstRaidFlags,
@@ -3983,37 +3988,44 @@ end
 function addon:TauntSay(msg, typeoftaunt)
 	if typeoftaunt == "taunt" then
 		if profile.tauntsound then
-			PlaySoundFile("Sound\\interface\\PickUp\\PickUpMetalSmall.ogg", "Master")
+			addon:Debug("tauntsound")
+			PlaySoundFile("Sound\\Interface\\PickUp\\PickUpMetalSmall.ogg", "Master")
 		end
 		EventReport(msg, profile.tauntrw, profile.tauntraid, profile.tauntparty, profile.tauntself)
 	elseif typeoftaunt == "failedtauntimmune" then
 		if profile.failsoundimmune then
+			addon:Debug("failsoundimmune")
 			PlaySoundFile("Sound\\Spells\\SimonGame_Visual_GameFailedLarge.ogg", "Master")
 		end
 		EventReport(msg, profile.failrwimmune, profile.failraidimmune, profile.failpartyimmune, profile.failselfimmune)
 	elseif typeoftaunt == "failedtauntresist" then
 		if profile.failsoundresist then
+			addon:Debug("failsoundresist")
 			PlaySoundFile("Sound\\Spells\\SimonGame_Visual_GameFailedSmall.ogg", "Master")
 		end
 		EventReport(msg, profile.failrwresist, profile.failraidresist, profile.failpartyresist, profile.failselfresist)
 	elseif typeoftaunt == "ninjataunt" then
 		if profile.ninjasound then
+			addon:Debug("ninjataunt")
 			PlaySoundFile("Sound\\Doodad\\G_NecropolisWound.ogg", "Master")
 		end
 		EventReport(msg, profile.ninjarw, profile.ninjaraid, profile.ninjaparty, profile.ninjaself)
 	elseif typeoftaunt == "nontanktaunt" then
 		if profile.nontanktauntsound then
+			addon:Debug("nontanktaunt")
 			PlaySoundFile("Sound\\Creature\\Voljin\\VoljinAggro01.ogg", "Master")
 		end
 		EventReport(msg, profile.nontanktauntrw, profile.nontanktauntraid, profile.nontanktauntparty, profile.nontanktauntself)
 	elseif typeoftaunt == "otherfail" then
 		if profile.otherfailsound then
+			addon:Debug("unknowntauntfail")
 			PlaySoundFile("Sound\\Doodad\\ZeppelinHeliumA.ogg", "Master")
 		end
 		EventReport(msg, profile.otherfailrw, profile.otherfailraid, profile.otherfailparty, profile.otherfailself)
 	elseif typeoftaunt == "tauntme" then
 		if profile.tauntmesound then
-			PlaySoundFile("Sound\\interface\\MagicClick.ogg", "Master")
+			addon:Debug("tauntme")
+			PlaySoundFile("Sound\\Interface\\MagicClick.ogg", "Master")
 		end
 		EventReport(msg, profile.tauntmerw, profile.tauntmeraid, profile.tauntmeparty, profile.tauntmeself)
 	end
@@ -4726,7 +4738,7 @@ end
 function addon:DeathSay(msg, typeofdeath)
 	if typeofdeath == "tank" then
 		if profile.tankdeathsound then
-			PlaySoundFile("Sound\\interface\\igQuestFailed.ogg", "Master")
+			PlaySoundFile("Sound\\Interface\\igQuestFailed.ogg", "Master")
 		end
 		EventReport(msg, profile.tankdeathrw, profile.tankdeathraid, profile.tankdeathparty, profile.tankdeathself)
 	elseif typeofdeath == "healer" then
@@ -4736,12 +4748,12 @@ function addon:DeathSay(msg, typeofdeath)
 		EventReport(msg, profile.healerdeathrw, profile.healerdeathraid, profile.healerdeathparty, profile.healerdeathself)
 	elseif typeofdeath == "meleedps" then
 		if profile.meleedpsdeathsound then
-			PlaySoundFile("Sound\\interface\\iCreateCharacterA.ogg", "Master")
+			PlaySoundFile("Sound\\Interface\\iCreateCharacterA.ogg", "Master")
 		end
 		EventReport(msg, profile.meleedpsdeathrw, profile.meleedpsdeathraid, profile.meleedpsdeathparty, profile.meleedpsdeathself)
 	elseif typeofdeath == "rangeddps" then
 		if profile.rangeddpsdeathsound then
-			PlaySoundFile("Sound\\interface\\iCreateCharacterA.ogg", "Master")
+			PlaySoundFile("Sound\\Interface\\iCreateCharacterA.ogg", "Master")
 		end
 		EventReport(msg, profile.rangeddpsdeathrw, profile.rangeddpsdeathraid, profile.rangeddpsdeathparty, profile.rangeddpsdeathself)
 	end
@@ -4895,7 +4907,7 @@ function addon:PopUpWizard()
 		OnCancel = function (_,reason)
 			profile.TellWizard = false
 		end,
-		sound = "levelup2",
+		sound = 888,  --level up sound
 		timeout = 200,
 		whileDead = true,
 		hideOnEscape = true,
